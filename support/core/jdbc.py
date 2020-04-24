@@ -12,10 +12,7 @@ class Jdbc:
     ]
 
     def query(self, sql, db = 'mydb'):  
-        #impala
-        #url = 'jdbc:hive2://192.168.70.91:21050/;auth=noSasl'
-        #hive
-        url = 'jdbc:hive2://192.168.70.90:10000/' + db
+        url = 'jdbc:hive2://ip:10000/' + db
         dirver = 'org.apache.hive.jdbc.HiveDriver'
         DIR = os.getcwd() + '/lib/'
         jarFile = [
@@ -37,7 +34,7 @@ class Jdbc:
             DIR + 'hive-serde-2.1.1.jar',
             DIR + 'guava-28.0-jre.jar',
         ]
-        conn = jaydebeapi.connect(dirver, url, ['root', '123456'], jarFile)
+        conn = jaydebeapi.connect(dirver, url, ['root', ''], jarFile)
         curs = conn.cursor()
         for _sql in self.base_sql:
             curs.execute(_sql)
